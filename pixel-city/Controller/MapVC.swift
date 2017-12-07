@@ -21,6 +21,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
+    let numberOfPhoto = 10
     
     var screenSize = UIScreen.main.bounds
     
@@ -32,6 +33,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
     var imageUrlArray = [String]()
     var imageArray = [UIImage]()
+    var photoArray = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,13 +182,15 @@ extension MapVC: MKMapViewDelegate {
     }
     
     func retrieveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
-        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
+        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: self.numberOfPhoto)).responseJSON { (response) in
             guard let json = response.result.value as? Dictionary<String, AnyObject> else { return }
             let photosDict = json["photos"] as! Dictionary<String, AnyObject>
             let photosDictArray = photosDict["photo"] as! [Dictionary<String, AnyObject>]
             for photo in photosDictArray {
+                let photoEntity = Photo(title: "\(photo["title"]!)", postedDate: "23 Décembre 2017", description: "This picture was took during the winter", location: annotation.coordinate)
                 let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_h_d.jpg"
                 self.imageUrlArray.append(postUrl)
+                self.photoArray.append(photoEntity)
             }
             handler(true)
         }
@@ -197,7 +201,7 @@ extension MapVC: MKMapViewDelegate {
             Alamofire.request(url).responseImage(completionHandler: { (response) in
                 guard let image = response.result.value else { return }
                 self.imageArray.append(image)
-                self.progressLbl?.text = "\(self.imageArray.count)/40 IMAGES DOWNLOADED"
+                self.progressLbl?.text = "\(self.imageArray.count)/\(self.numberOfPhoto) IMAGES DOWNLOADED"
                 
                 if self.imageArray.count == self.imageUrlArray.count {
                     handler(true)
@@ -247,7 +251,7 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else { return }
-        popVC.initData(forImage: imageArray[indexPath.row])
+        popVC.initData(forImage: imageArray[indexPath.row], andPhoto: photoArray[indexPath.row])
         present(popVC, animated: true, completion: nil)
     }
 }
@@ -258,7 +262,7 @@ extension MapVC: UIViewControllerPreviewingDelegate {
         
         guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else { return nil }
         
-        popVC.initData(forImage: imageArray[indexPath.row])
+        popVC.initData(forImage: imageArray[indexPath.row], andPhoto: photoArray[indexPath.row])
         
         previewingContext.sourceRect = cell.contentView.frame
         return popVC

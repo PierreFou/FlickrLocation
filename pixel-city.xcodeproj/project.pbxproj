@@ -16,6 +16,7 @@
 		71167CB01F1EA23400EF4312 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71167CAF1F1EA23400EF4312 /* PhotoCell.swift */; };
 		71167CB21F1EA6C700EF4312 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71167CB11F1EA6C700EF4312 /* Constants.swift */; };
 		71A713761F21732F00B1BBD4 /* PopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A713751F21732F00B1BBD4 /* PopVC.swift */; };
+		8F7E8C4D1FD9C03300AC65CD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E8C4C1FD9C03300AC65CD /* Photo.swift */; };
 		98E88A05E4BD158A88FC7542 /* Pods_pixel_city.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9DFF3429D8E977FED4666A /* Pods_pixel_city.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		71167CAF1F1EA23400EF4312 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		71167CB11F1EA6C700EF4312 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		71A713751F21732F00B1BBD4 /* PopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopVC.swift; sourceTree = "<group>"; };
+		8F7E8C4C1FD9C03300AC65CD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		AE9DFF3429D8E977FED4666A /* Pods_pixel_city.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pixel_city.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9685C6F2EC747D30A12EB9 /* Pods-pixel-city.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixel-city.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pixel-city/Pods-pixel-city.debug.xcconfig"; sourceTree = "<group>"; };
 		EC10EEBFD4E813891E40CDF8 /* Pods-pixel-city.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pixel-city.release.xcconfig"; path = "Pods/Target Support Files/Pods-pixel-city/Pods-pixel-city.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		71167C961F1D498100EF4312 /* pixel-city */ = {
 			isa = PBXGroup;
 			children = (
+				8F7E8C4B1FD9C02600AC65CD /* Model */,
 				71167CAC1F1D49D500EF4312 /* Utilities */,
 				71167CAB1F1D49C600EF4312 /* Extensions */,
 				71167CAA1F1D49BB00EF4312 /* View */,
@@ -113,6 +116,14 @@
 				71167CB11F1EA6C700EF4312 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8F7E8C4B1FD9C02600AC65CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F7E8C4C1FD9C03300AC65CD /* Photo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C14F2A7C421B17A6B0C15394 /* Pods */ = {
@@ -254,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F7E8C4D1FD9C03300AC65CD /* Photo.swift in Sources */,
 				71A713761F21732F00B1BBD4 /* PopVC.swift in Sources */,
 				71167CB21F1EA6C700EF4312 /* Constants.swift in Sources */,
 				71167CB01F1EA23400EF4312 /* PhotoCell.swift in Sources */,
